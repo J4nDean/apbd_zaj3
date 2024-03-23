@@ -8,9 +8,10 @@ public interface IContainerBase
     protected int Glebokosc { get; set; }
     protected string NumerySeryjne { get; }
     public double MaksymalnaMasaLadunku { get; set; }
+    protected static int count = 0;
     
 
-    void GenerateSerialNumber();
+    void GenerateSerialNumber(string typ);
     void OproznijKontener();
     void ZaladowanieKontenera();
 }

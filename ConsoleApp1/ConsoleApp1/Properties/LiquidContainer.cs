@@ -8,18 +8,31 @@ public class LiquidContainer : IContainerBase, IHazardNotifier
     public double Wysokosc { get; set; }
     public double WagaWlasna { get; set; }
     public int Glebokosc { get; set; }
-    public string NumerySeryjne { get; }
+    public string NumerySeryjne { get; set; }
     public double MaksymalnaMasaLadunku { get; set; }
+    public static int count { get; set; }
     public bool IsHazard { get; }
     
-    public void GenerateSerialNumber()
+    public LiquidContainer(string typ, double masaLadunku, double wysokosc, double wagaWlasna, int glebokosc, double maksymalnaMasaLadunku, bool isHazard)
     {
-        throw new NotImplementedException();
+        MasaLadunku = masaLadunku;
+        Wysokosc = wysokosc;
+        WagaWlasna = wagaWlasna;
+        Glebokosc = glebokosc;
+        MaksymalnaMasaLadunku = maksymalnaMasaLadunku;
+        IsHazard = isHazard;
+
+        GenerateSerialNumber(typ);
+    }
+    
+    public void GenerateSerialNumber(string typ)
+    {
+        NumerySeryjne = $"KON-{typ}-{count++}";
     }
 
     public void OproznijKontener()
     {
-        throw new NotImplementedException();
+        MasaLadunku = 0;
     }
 
     public void ZaladowanieKontenera()
