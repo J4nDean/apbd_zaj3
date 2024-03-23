@@ -36,7 +36,6 @@ public abstract class KontenerBase
 
         if (randomMasaLadunku > kontener.MaksymalnaMasaLadunku)
         {
-            throw new OverfillException("Próba przekroczenia maksymalnej masy ładunku!");
         }
 
         kontener.MasaLadunku = randomMasaLadunku;
