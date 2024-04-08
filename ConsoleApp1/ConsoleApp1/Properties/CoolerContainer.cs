@@ -39,25 +39,39 @@ public class CoolerContainer : IContainerBase, IHazardNotifier
         RodzajProduktu = "Brak";
     }
 
-    public void ZaladowanieKontenera()
+    public void ZaladowanieKontenera(int masaLadunku)
     {
+        throw new NotImplementedException();
     }
 
     public void ZaladowanieKontenera(string produkt, double temperaturaProduktu)
     {
-        // Przypisanie wartości do właściwości kontenera
-        RodzajProduktu = produkt;
-        MasaLadunku = MaksymalnaMasaLadunku;
-        TemperaturaProduktu = temperaturaProduktu;
-
-        // Sprawdzenie, czy temperatura produktu jest zgodna z temperaturą kontenera
-        if (temperaturaProduktu != Temperatura)
-            NotifyHazard();
-
+        // Sprawdzenie, czy kontener jest pusty lub czy produkt jest tego samego rodzaju
+        if (string.IsNullOrEmpty(RodzajProduktu) || RodzajProduktu == produkt)
+        {
+            // Sprawdzenie, czy temperatura produktu jest zgodna z temperaturą kontenera
+            if (temperaturaProduktu >= Temperatura)
+            {
+                // Przypisanie wartości do właściwości kontenera
+                RodzajProduktu = produkt;
+                MasaLadunku = MaksymalnaMasaLadunku;
+                TemperaturaProduktu = temperaturaProduktu;
+            }
+            else
+            {
+                // Temperatura produktu jest niższa niż temperatura kontenera, zgłaszamy wyjątek
+                NotifyHazard(NumerySeryjne);
+            }
+        }
+        else
+        {
+            // Produkt jest innego rodzaju niż przechowywany w kontenerze, zgłaszamy wyjątek
+            NotifyHazard(NumerySeryjne);
+        }
     }
 
-    public void NotifyHazard()
+    public void NotifyHazard(string containerNumber)
     {
-        throw new InconsistentTempException(NumerySeryjne, TemperaturaProduktu,Temperatura);
+        throw new InconsistentTempException(NumerySeryjne, TemperaturaProduktu, Temperatura);
     }
 }

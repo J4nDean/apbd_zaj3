@@ -13,5 +13,5 @@ public interface IContainerBase
 
     void GenerateSerialNumber(string typ);
     void OproznijKontener();
-    void ZaladowanieKontenera();
+    void ZaladowanieKontenera(int masaLadunku);
 }

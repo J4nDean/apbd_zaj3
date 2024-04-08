@@ -12,8 +12,9 @@ public class LiquidContainer : IContainerBase, IHazardNotifier
     public double MaksymalnaMasaLadunku { get; set; }
     public static int count { get; set; }
     public bool IsHazard { get; }
-    
-    public LiquidContainer(string typ, double masaLadunku, double wysokosc, double wagaWlasna, int glebokosc, double maksymalnaMasaLadunku, bool isHazard)
+
+    public LiquidContainer(string typ, double masaLadunku, double wysokosc, double wagaWlasna, int glebokosc,
+        double maksymalnaMasaLadunku, bool isHazard)
     {
         MasaLadunku = masaLadunku;
         Wysokosc = wysokosc;
@@ -24,7 +25,7 @@ public class LiquidContainer : IContainerBase, IHazardNotifier
 
         GenerateSerialNumber(typ);
     }
-    
+
     public void GenerateSerialNumber(string typ)
     {
         NumerySeryjne = $"KON-{typ}-{count++}";
@@ -35,18 +36,21 @@ public class LiquidContainer : IContainerBase, IHazardNotifier
         MasaLadunku = 0;
     }
 
-    public void ZaladowanieKontenera()
+
+
+    public void ZaladowanieKontenera(int masaLadunku)
     {
         double maxLoad = IsHazard ? MaksymalnaMasaLadunku * 0.5 : MaksymalnaMasaLadunku * 0.9;
-        
+        MasaLadunku = masaLadunku;
+
         if (MasaLadunku > maxLoad)
         {
-            NotifyHazard();
+            NotifyHazard(NumerySeryjne);
         }
     }
 
-    public void NotifyHazard()
+    public void NotifyHazard(string containerNumber)
     {
-        throw new OverfillException(NumerySeryjne);
+        Console.WriteLine($"Niebezpieczna operacja na kontenerze {containerNumber}!");
     }
-}
+}   

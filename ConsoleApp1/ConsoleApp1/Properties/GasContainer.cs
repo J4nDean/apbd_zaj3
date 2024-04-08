@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1;
 
-public class GasContainer : IContainerBase, IHazardNotifier
+public class GasContainer : IContainerBase, IHazardNotifier 
 {
     public double MasaLadunku { get; set; }
     public double Wysokosc { get; set; }
@@ -30,21 +30,23 @@ public class GasContainer : IContainerBase, IHazardNotifier
         NumerySeryjne = $"KON-{typ}-{count++}";
     }
 
+    public void ZaladowanieKontenera(int masaLadunku)
+    {
+        MasaLadunku = masaLadunku;
+
+        if (MasaLadunku > MaksymalnaMasaLadunku)
+        {
+            NotifyHazard(NumerySeryjne);
+        }
+    }
+
     public void OproznijKontener()
     {
         MasaLadunku *= 0.05;
     }
 
-    public void ZaladowanieKontenera()
+    public void NotifyHazard(string containerNumber)
     {
-        if (MasaLadunku > MaksymalnaMasaLadunku)
-        {
-            NotifyHazard();
-        }
-    }
-
-    public void NotifyHazard()
-    {
-        throw new OverfillException(NumerySeryjne);
+        Console.WriteLine($"Niebezpieczna operacja na kontenerze {containerNumber}!");
     }
 }
