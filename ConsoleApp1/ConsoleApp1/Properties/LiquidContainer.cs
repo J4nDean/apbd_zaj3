@@ -48,6 +48,16 @@ public class LiquidContainer : IContainerBase, IHazardNotifier
             NotifyHazard(NumerySeryjne);
         }
     }
+    
+    public void WypiszInformacje()
+    {
+        Console.WriteLine($"Typ: LiquidContainer, Masa ładunku: {MasaLadunku}, Wysokość: {Wysokosc}, Waga własna: {WagaWlasna}, Głębokość: {Glebokosc}, Numer seryjny: {NumerySeryjne}, Maksymalna masa ładunku: {MaksymalnaMasaLadunku}, Czy jest niebezpieczny: {IsHazard}");
+    }
+    
+    public double PobierzMaseLadunku()
+    {
+        return MasaLadunku;
+    }
 
     public void NotifyHazard(string containerNumber)
     {

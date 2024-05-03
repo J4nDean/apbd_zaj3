@@ -2,9 +2,17 @@
 
 public class Program
 {
-
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
+        ContainerTests containerTests = new();
+        containerTests.TestLiquidContainer();
+        containerTests.TestGasContainer();
+        containerTests.TestCoolerContainer();
+        
+        KontenerowiecTests kontenerowiecTests = new();
+        kontenerowiecTests.TestObliczWageKontenerow();
+        kontenerowiecTests.TestDodajKontener();
+        kontenerowiecTests.TestUsunKontener();
         
     }
 }

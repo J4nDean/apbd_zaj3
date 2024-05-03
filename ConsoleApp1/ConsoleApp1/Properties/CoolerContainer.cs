@@ -24,8 +24,8 @@ public class CoolerContainer : IContainerBase, IHazardNotifier
         Glebokosc = glebokosc;
         MaksymalnaMasaLadunku = maksymalnaMasaLadunku;
         Temperatura = temperatura;
-
         GenerateSerialNumber(typ);
+        
     }
     
     public void GenerateSerialNumber(string typ)
@@ -68,6 +68,16 @@ public class CoolerContainer : IContainerBase, IHazardNotifier
             // Produkt jest innego rodzaju niż przechowywany w kontenerze, zgłaszamy wyjątek
             NotifyHazard(NumerySeryjne);
         }
+    }
+    
+    public void WypiszInformacje()
+    {
+        Console.WriteLine($"Typ: CoolerContainer, Masa ładunku: {MasaLadunku}, Wysokość: {Wysokosc}, Waga własna: {WagaWlasna}, Głębokość: {Glebokosc}, Numer seryjny: {NumerySeryjne}, Maksymalna masa ładunku: {MaksymalnaMasaLadunku}, Temperatura: {Temperatura}, Rodzaj produktu: {RodzajProduktu}, Temperatura produktu: {TemperaturaProduktu}");
+    }
+    
+    public double PobierzMaseLadunku()
+    {
+        return MasaLadunku;
     }
 
     public void NotifyHazard(string containerNumber)

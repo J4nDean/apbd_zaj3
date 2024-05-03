@@ -21,6 +21,7 @@ public class GasContainer : IContainerBase, IHazardNotifier
         Glebokosc = glebokosc;
         MaksymalnaMasaLadunku = maksymalnaMasaLadunku;
         Cisnienie = cisnienie;
+        
 
         GenerateSerialNumber(typ);
     }
@@ -43,6 +44,16 @@ public class GasContainer : IContainerBase, IHazardNotifier
     public void OproznijKontener()
     {
         MasaLadunku *= 0.05;
+    }
+    
+    public void WypiszInformacje()
+    {
+        Console.WriteLine($"Typ: GasContainer, Masa ładunku: {MasaLadunku}, Wysokość: {Wysokosc}, Waga własna: {WagaWlasna}, Głębokość: {Glebokosc}, Numer seryjny: {NumerySeryjne}, Maksymalna masa ładunku: {MaksymalnaMasaLadunku}, Ciśnienie: {Cisnienie}");
+    }
+    
+    public double PobierzMaseLadunku()
+    {
+        return MasaLadunku;
     }
 
     public void NotifyHazard(string containerNumber)
